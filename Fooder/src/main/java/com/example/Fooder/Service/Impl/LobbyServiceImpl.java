@@ -2,6 +2,8 @@ package com.example.Fooder.Service.Impl;
 
 import java.util.List;
 import org.springframework.stereotype.Service;
+
+import com.example.Fooder.Exception.LobbyException.LobbyNotFoundException;
 import com.example.Fooder.Models.Lobby;
 import com.example.Fooder.Repositories.LobbyRepository;
 import com.example.Fooder.Service.LobbyService;
@@ -42,6 +44,9 @@ public class LobbyServiceImpl implements LobbyService
 
     @Override
     public Lobby getLobby(Integer id_lobby) {
+        if(lobbyRepository.findById(id_lobby).isEmpty()){
+            throw new LobbyNotFoundException("Requested Lobby Does Not Exist");
+        }
         return lobbyRepository.findById(id_lobby).get();
     }
 
