@@ -11,4 +11,3 @@ public interface LobbyService{
     public List<Lobby> getAllLobbies();
 
 }
-

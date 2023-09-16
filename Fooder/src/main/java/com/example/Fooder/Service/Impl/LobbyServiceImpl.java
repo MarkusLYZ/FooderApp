@@ -1,6 +1,8 @@
 package com.example.Fooder.Service.Impl;
 
 import java.util.List;
+//import java.util.Random;
+//import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
 import com.example.Fooder.Exception.LobbyException.LobbyNotFoundException;
@@ -20,8 +22,16 @@ public class LobbyServiceImpl implements LobbyService
 
     @Override
     public String createLobby(Lobby lobby) {
-        lobbyRepository.save(lobby);
-        return "lobby created";
+        int min = 100000;
+        int max = 999999;
+        int random_int = (int)Math.floor(Math.random() * (max - min + 1) + min);
+        while(true){
+            lobby.setId_lobby(random_int);
+            if(lobbyRepository.existsById(lobby.getId_lobby())==false){
+                lobbyRepository.save(lobby);
+                return "lobby created:" + lobby.getId_lobby();
+            } 
+        }    
     }
 
     @Override

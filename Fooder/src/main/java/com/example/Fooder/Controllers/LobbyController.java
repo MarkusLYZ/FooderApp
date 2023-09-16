@@ -43,7 +43,7 @@ public class LobbyController
     public String createLobby(@RequestBody Lobby lobby)
     {
         lobbyService.createLobby(lobby); 
-        return "Lobby created";
+        return "Lobby created:" + lobby.getId_lobby();
     }
 
     @PutMapping
