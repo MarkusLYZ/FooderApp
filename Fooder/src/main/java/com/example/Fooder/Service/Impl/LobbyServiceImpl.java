@@ -1,6 +1,7 @@
 package com.example.Fooder.Service.Impl;
 
 import java.util.List;
+
 //import java.util.Random;
 //import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
@@ -70,9 +71,22 @@ public class LobbyServiceImpl implements LobbyService
             lobbyRepository.delete(lobby);
             return "lobby removed";
         }else{
-            
+            if(lobby.getUser1()==user){
+                lobby.setUser1(0);
+            }else if(lobby.getUser2()==user){
+                lobby.setUser2(0);
+            }else if(lobby.getUser3()==user){
+                lobby.setUser3(0);
+            }else if(lobby.getUser4()==user){
+                lobby.setUser4(0);
+            }else if(lobby.getUser5()==user){
+                lobby.setUser5(0);
+            }else if(lobby.getUser6()==user){
+                lobby.setUser6(0);
+            }else{
+                return "invalid user";
+            }
             lobby.setTotal_users(lobby.getTotal_users()-1);
-            
         }
         lobbyRepository.save(lobby);
         return "exit lobby";
