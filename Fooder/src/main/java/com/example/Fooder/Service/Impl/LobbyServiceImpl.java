@@ -10,6 +10,7 @@ import com.example.Fooder.Models.Lobby;
 import com.example.Fooder.Repositories.LobbyRepository;
 import com.example.Fooder.Service.LobbyService;
 
+
 @Service
 public class LobbyServiceImpl implements LobbyService
 {
@@ -28,19 +29,53 @@ public class LobbyServiceImpl implements LobbyService
         while(true){
             lobby.setId_lobby(random_int);
             if(lobbyRepository.existsById(lobby.getId_lobby())==false){
+                lobby.setTotal_users(1);
                 lobbyRepository.save(lobby);
-                return "lobby created:" + lobby.getId_lobby();
+                return "lobby created: Impl" ;
             } 
         }    
     }
 
     @Override
-    public String updateLobby(Lobby lobby) {
+    public String joinLobby(Lobby lobby) {
         if(lobbyRepository.findById(lobby.getId_lobby()).isEmpty()){
             throw new LobbyNotFoundException("Requested Lobby Does Not Exist");
         }
+        lobby = lobbyRepository.findById(lobby.getId_lobby()).get();
+            if(lobby.getUser2()==0){
+                lobby.setUser2(2);
+            }else if(lobby.getUser3()==0){
+                lobby.setUser3(3);
+            }else if(lobby.getUser4()==0){
+                lobby.setUser4(4);
+            }else if(lobby.getUser5()==0){
+                lobby.setUser5(5);
+            }else if(lobby.getUser6()==0){
+                lobby.setUser6(6);
+            }else{
+                return "Lobby full";
+            }
+            lobby.setTotal_users(lobby.getTotal_users()+1);
+
         lobbyRepository.save(lobby);
         return "lobby updated";
+    }
+    @Override
+    public String leaveLobby(Lobby lobby, Integer user){
+        if(lobbyRepository.findById(lobby.getId_lobby()).isEmpty()){
+            throw new LobbyNotFoundException("Requested Lobby Does Not Exist");
+        }
+        lobby = lobbyRepository.findById(lobby.getId_lobby()).get();
+        if(lobby.getTotal_users()==1){
+            lobbyRepository.delete(lobby);
+            return "lobby removed";
+        }else{
+            
+            lobby.setTotal_users(lobby.getTotal_users()-1);
+            
+        }
+        lobbyRepository.save(lobby);
+        return "exit lobby";
     }
 
     @Override

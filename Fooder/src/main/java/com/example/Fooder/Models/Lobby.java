@@ -5,6 +5,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 
+
 @Entity
 @Table(name="lobby")
 public class Lobby 
@@ -18,10 +19,12 @@ public class Lobby
     private Integer user4;
     private Integer user5;
     private Integer user6;
+    private Integer total_users;
+
 
     public Lobby(){}
     public Lobby(Integer id_lobby, Integer user1, Integer user2, Integer user3, Integer user4, Integer user5,
-            Integer user6) {
+            Integer user6, Integer total_users) {
         this.id_lobby = id_lobby;
         this.user1 = user1;
         this.user2 = user2;
@@ -29,6 +32,7 @@ public class Lobby
         this.user4 = user4;
         this.user5 = user5;
         this.user6 = user6;
+        this.total_users = total_users;
     }
     public Integer getId_lobby() {
         return id_lobby;
@@ -84,4 +88,11 @@ public class Lobby
     public void setUser6(Integer user6) {
         this.user6 = user6;
     }
+    public Integer getTotal_users() {
+        return total_users;
+    }
+    public void setTotal_users(Integer total_users) {
+        this.total_users = total_users;
+    }
+
 }

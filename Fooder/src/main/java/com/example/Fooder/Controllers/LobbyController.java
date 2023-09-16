@@ -42,22 +42,25 @@ public class LobbyController
     @PostMapping
     public String createLobby(@RequestBody Lobby lobby)
     {
-        lobbyService.createLobby(lobby); 
-        return "Lobby created:" + lobby.getId_lobby();
+        return lobbyService.createLobby(lobby); 
     }
 
-    @PutMapping
-    public String updateLobbyDetails(@RequestBody Lobby lobby)
+    @PutMapping()
+    public String joinLobbyDetails(@RequestBody Lobby lobby)
     {
-        lobbyService.updateLobby(lobby);
-        return "Lobby updated";
+        return lobbyService.joinLobby(lobby);
+    }
+    
+    @PutMapping("{user}")
+    public String leaveLobbyDetails(@RequestBody Lobby lobby, @PathVariable Integer user)
+    {
+        return lobbyService.leaveLobby(lobby, user);
     }
 
     @DeleteMapping("{id_lobby}")
     public String deleteLobby(@PathVariable("id_lobby") Integer id_lobby)
-    {
-        lobbyService.deleteLobby(id_lobby);
-        return "Lobby deleted";
+    {   
+        return lobbyService.deleteLobby(id_lobby);
     }
 
 
