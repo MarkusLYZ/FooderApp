@@ -36,12 +36,18 @@ public class LobbyServiceImpl implements LobbyService
 
     @Override
     public String updateLobby(Lobby lobby) {
+        if(lobbyRepository.findById(lobby.getId_lobby()).isEmpty()){
+            throw new LobbyNotFoundException("Requested Lobby Does Not Exist");
+        }
         lobbyRepository.save(lobby);
         return "lobby updated";
     }
 
     @Override
     public String deleteLobby(Integer id_lobby) {
+        if(lobbyRepository.findById(id_lobby).isEmpty()){
+            throw new LobbyNotFoundException("Requested Lobby Does Not Exist");
+        }
         lobbyRepository.deleteById(id_lobby);
         return "lobby deleted";
     }
