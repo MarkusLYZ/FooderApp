@@ -23,7 +23,7 @@ public class LobbyServiceImpl implements LobbyService
     }
 
     @Override
-    public String createLobby(Lobby lobby) {
+    public Lobby createLobby(Lobby lobby) {
         int min = 100000;
         int max = 999999;
         int random_int = (int)Math.floor(Math.random() * (max - min + 1) + min);
@@ -32,7 +32,7 @@ public class LobbyServiceImpl implements LobbyService
             if(lobbyRepository.existsById(lobby.getId_lobby())==false){
                 lobby.setTotal_users(1);
                 lobbyRepository.save(lobby);
-                return "lobby created: Impl" ;
+                return lobby;
             } 
         }    
     }

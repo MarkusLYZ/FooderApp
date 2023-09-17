@@ -40,7 +40,7 @@ public class LobbyController
     }
 
     @PostMapping
-    public String createLobby(@RequestBody Lobby lobby)
+    public Lobby createLobby(@RequestBody Lobby lobby)
     {
         return lobbyService.createLobby(lobby); 
     }
