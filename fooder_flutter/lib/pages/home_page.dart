@@ -1,8 +1,18 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:fooder_flutter/lobby_service.dart';
+
+
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({Key?key}):super(key: key) {
+    loadAllLobby();
+  }
+
+  loadAllLobby() async{
+    final results = await LobbyService().getLobby();
+    print('Total lobbies:${results.length}');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +40,7 @@ class HomePage extends StatelessWidget {
                             onPressed: () {
                               if (kDebugMode) {
                                 //TODO_Change this to lead to main swiping page
+                                
                                 print('Create button pressed');
                               }
                             },
