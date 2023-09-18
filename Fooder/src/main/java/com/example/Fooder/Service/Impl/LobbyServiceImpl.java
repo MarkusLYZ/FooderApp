@@ -30,6 +30,7 @@ public class LobbyServiceImpl implements LobbyService
         while(true){
             lobby.setId_lobby(random_int);
             if(lobbyRepository.existsById(lobby.getId_lobby())==false){
+                lobby.setUser1(1);
                 lobby.setTotal_users(1);
                 lobbyRepository.save(lobby);
                 return lobby;

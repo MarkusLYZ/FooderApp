@@ -39,8 +39,8 @@ public class LobbyController
         return lobbyService.getAllLobbies();
     }
 
-    @PostMapping
-    public Lobby createLobby(@RequestBody Lobby lobby)
+    @PostMapping()
+    public Lobby createLobby(Lobby lobby)
     {
         return lobbyService.createLobby(lobby); 
     }
