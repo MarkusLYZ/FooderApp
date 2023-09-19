@@ -10,5 +10,6 @@ public interface LobbyService{
     public String deleteLobby(Integer id_lobby);
     public Lobby getLobby(Integer id_lobby);
     public List<Lobby> getAllLobbies();
+    public List<Lobby> getFullLobbies(Integer total_users);
 
 }

@@ -2,8 +2,6 @@ package com.example.Fooder.Service.Impl;
 
 import java.util.List;
 
-//import java.util.Random;
-//import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
 import com.example.Fooder.Exception.LobbyException.LobbyNotFoundException;
@@ -31,6 +29,11 @@ public class LobbyServiceImpl implements LobbyService
             lobby.setId_lobby(random_int);
             if(lobbyRepository.existsById(lobby.getId_lobby())==false){
                 lobby.setUser1(1);
+                lobby.setUser2(0);
+                lobby.setUser3(0);
+                lobby.setUser4(0);
+                lobby.setUser5(0);
+                lobby.setUser6(0);
                 lobby.setTotal_users(1);
                 lobbyRepository.save(lobby);
                 return lobby;
@@ -73,7 +76,7 @@ public class LobbyServiceImpl implements LobbyService
             return "lobby removed";
         }else{
             if(lobby.getUser1()==user){
-                lobby.setUser1(0);
+                lobby.setUser1(1);
             }else if(lobby.getUser2()==user){
                 lobby.setUser2(0);
             }else if(lobby.getUser3()==user){
@@ -116,6 +119,9 @@ public class LobbyServiceImpl implements LobbyService
         return lobbyRepository.findById(id_lobby).get();
     }
 
-   
+   @Override
+   public List<Lobby> getFullLobbies(Integer total_users){
+    return lobbyRepository.findByTotalUsers(total_users);
+   }
     
 }

@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 public class Lobby 
 {
     @Id
-    private Integer id_lobby;
+    private Integer idLobby;
 
     private Integer user1;
     private Integer user2;
@@ -19,26 +19,26 @@ public class Lobby
     private Integer user4;
     private Integer user5;
     private Integer user6;
-    private Integer total_users;
+    private Integer totalUsers;
 
 
     public Lobby(){}
     public Lobby(Integer id_lobby, Integer user1, Integer user2, Integer user3, Integer user4, Integer user5,
             Integer user6, Integer total_users) {
-        this.id_lobby = id_lobby;
+        this.idLobby = id_lobby;
         this.user1 = user1;
         this.user2 = user2;
         this.user3 = user3;
         this.user4 = user4;
         this.user5 = user5;
         this.user6 = user6;
-        this.total_users = total_users;
+        this.totalUsers = total_users;
     }
     public Integer getId_lobby() {
-        return id_lobby;
+        return idLobby;
     }
     public void setId_lobby(Integer id_lobby) {
-        this.id_lobby = id_lobby;
+        this.idLobby = id_lobby;
     }
 
     
@@ -89,10 +89,10 @@ public class Lobby
         this.user6 = user6;
     }
     public Integer getTotal_users() {
-        return total_users;
+        return totalUsers;
     }
     public void setTotal_users(Integer total_users) {
-        this.total_users = total_users;
+        this.totalUsers = total_users;
     }
 
 }
