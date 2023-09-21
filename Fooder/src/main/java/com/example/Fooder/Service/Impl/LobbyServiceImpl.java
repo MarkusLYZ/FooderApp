@@ -43,9 +43,10 @@ public class LobbyServiceImpl implements LobbyService
 
     @Override
     public String joinLobby(Lobby lobby) {
-        if(lobbyRepository.findById(lobby.getId_lobby()).isEmpty()){
-            throw new LobbyNotFoundException("Requested Lobby Does Not Exist");
-        }
+        //TODO_change para to id_lobby instead of Lobby
+        // if(lobbyRepository.findById(lobby.getId_lobby()).isEmpty()){
+        //     throw new LobbyNotFoundException("Requested Lobby Does Not Exist");
+        // }
         lobby = lobbyRepository.findById(lobby.getId_lobby()).get();
             if(lobby.getUser2()==0){
                 lobby.setUser2(2);
@@ -67,6 +68,7 @@ public class LobbyServiceImpl implements LobbyService
     }
     @Override
     public String leaveLobby(Lobby lobby, Integer user){
+        //TODO_change para to id_lobby from lobby
         if(lobbyRepository.findById(lobby.getId_lobby()).isEmpty()){
             throw new LobbyNotFoundException("Requested Lobby Does Not Exist");
         }
