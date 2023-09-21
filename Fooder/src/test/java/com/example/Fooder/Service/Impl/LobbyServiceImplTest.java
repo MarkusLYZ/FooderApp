@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.util.Optional;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -41,16 +43,23 @@ public class LobbyServiceImplTest {
         mock(LobbyRepository.class);
 
         when(lobbyRepository.save(lobby)).thenReturn(lobby);
-        assertThat(lobbyService.createLobby(lobby)).isNotNull();
+        assertThat(lobbyService.createLobby(lobby)).isEqualTo(lobby);
     }
     @Test
     void testDeleteLobby() {
+        mock(Lobby.class);
+        mock(LobbyRepository.class);
 
+        when(lobbyRepository.save(lobby)).thenReturn(lobby);
+        assertThat(lobbyService.deleteLobby(123456)).isEqualTo("lobby deleted");
     }
 
     @Test
     void testGetAllLobbies() {
+        mock(Lobby.class);
+        mock(LobbyRepository.class);
 
+        
     }
 
     @Test
@@ -60,16 +69,27 @@ public class LobbyServiceImplTest {
 
     @Test
     void testGetLobby() {
-
+        mock(Lobby.class);
+        mock(LobbyRepository.class);
+        when(lobbyRepository.findById(123456)).thenReturn(Optional.ofNullable(lobby));
+        assertThat(lobbyService.getLobby(123456)).isEqualTo(lobby);
     }
 
     @Test
     void testJoinLobby() {
+        mock(Lobby.class);
+        mock(LobbyRepository.class);
 
+        when(lobbyRepository.save(lobby)).thenReturn(lobby);
+        assertThat(lobbyService.joinLobby(lobby)).isEqualTo(lobby);
     }
 
     @Test
     void testLeaveLobby() {
+        mock(Lobby.class);
+        mock(LobbyRepository.class);
 
+        when(lobbyRepository.save(lobby)).thenReturn(lobby);
+        assertThat(lobbyService.leaveLobby(lobby, lobby.getTotal_users())).isEqualTo("exit lobby" );
     }
 }
