@@ -51,14 +51,15 @@ public class LobbyServiceImplTest {
         when(lobbyRepository.save(lobby)).thenReturn(lobby);
         assertThat(lobbyService.createLobby(lobby)).isEqualTo(lobby);
     }
+
     @Test
     void testDeleteLobby() {
         mock(Lobby.class);
         mock(LobbyRepository.class, Mockito.CALLS_REAL_METHODS);
 
         doAnswer(Answers.CALLS_REAL_METHODS).when(
-            lobbyRepository).deleteById(any());  
-        assertThat(lobbyService.deleteLobby(123456)).isEqualTo("lobby deleted");
+            lobbyRepository).deleteById(any());
+        assertThat(lobbyService.deleteLobby(802805)).isEqualTo("lobby deleted");
     }
 
     @Test
@@ -81,7 +82,7 @@ public class LobbyServiceImplTest {
         when(lobbyRepository.findByTotalUsers(6)).thenReturn(
             new ArrayList<Lobby>(Collections.singleton(lobby)) 
             );
-        assertThat(lobbyService.getFullLobbies(6).get(0).getId_lobby()).isEqualTo(lobby.getId_lobby());
+        assertThat(lobbyService.getFullLobbies(6).get(0).getId_lobby()).isEqualTo(123456);
     }
 
     @Test
@@ -89,7 +90,7 @@ public class LobbyServiceImplTest {
         mock(Lobby.class);
         mock(LobbyRepository.class);
         when(lobbyRepository.findById(123456)).thenReturn(Optional.ofNullable(lobby));
-        assertThat(lobbyService.getLobby(123456).getTotal_users()).isEqualTo(lobby.getTotal_users());
+        assertThat(lobbyService.getLobby(123456)).isEqualTo(lobby);
     }
 
     @Test
@@ -97,7 +98,7 @@ public class LobbyServiceImplTest {
         mock(Lobby.class);
         mock(LobbyRepository.class);
 
-        when(lobbyRepository.save(lobby)).thenReturn(lobby);
+        when(lobbyRepository.findById(123456)).thenReturn(Optional.ofNullable(lobby));
         assertThat(lobbyService.joinLobby(lobby)).isEqualTo("Lobby full");
     }
 
@@ -106,8 +107,8 @@ public class LobbyServiceImplTest {
         mock(Lobby.class);
         mock(LobbyRepository.class);
 
-        when(lobbyRepository.save(lobby)).thenReturn(lobby);
-        assertThat(lobbyService.leaveLobby(lobby, lobby.getTotal_users())).isEqualTo("exit lobby" );
+        when(lobbyRepository.findById(123456)).thenReturn(Optional.ofNullable(lobby));
+        assertThat(lobbyService.leaveLobby(lobby, 6)).isEqualTo("exit lobby");
     }
 
     
