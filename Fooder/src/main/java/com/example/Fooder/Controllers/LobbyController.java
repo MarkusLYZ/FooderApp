@@ -2,6 +2,8 @@ package com.example.Fooder.Controllers;
 
 import com.example.Fooder.Models.Lobby;
 import com.example.Fooder.Service.LobbyService;
+import com.example.Fooder.response.ResponseHandler;
+
 
 import java.util.List;
 
@@ -23,7 +25,7 @@ public class LobbyController
     
     //CRUD services--------------------------------------------------------------------------------------------------------//
     @GetMapping("{id_Lobby}")
-    public Lobby getLobbyDetails(@PathVariable("id_Lobby") Integer id_lobby)
+    public ResponseEntity<Object> getLobbyDetails(@PathVariable("id_Lobby") Integer id_lobby)
     {   //TODO_add response handler before proceeding with controller unit test
         return ResponseHandler.responseBuilder("Requested Lobby details are givene here", HttpStatus.OK, lobbyService.getLobby(id_lobby));    
 
