@@ -23,7 +23,7 @@ public class PfpController
     
     //CRUD services--------------------------------------------------------------------------------------------------------//
     @GetMapping("{id_pfp}")
-    public Pfp getLobbyDetails(@PathVariable("id_pfp") Integer id_pfp)
+    public Pfp getPfp(@PathVariable("id_pfp") Integer id_pfp)
     {
         return pfpService.getPfp(id_pfp);    
 

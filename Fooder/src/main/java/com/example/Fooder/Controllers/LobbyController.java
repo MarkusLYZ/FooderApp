@@ -26,9 +26,8 @@ public class LobbyController
     //CRUD services--------------------------------------------------------------------------------------------------------//
     @GetMapping("{id_Lobby}")
     public ResponseEntity<Object> getLobbyDetails(@PathVariable("id_Lobby") Integer id_lobby)
-    {   //TODO_add response handler before proceeding with controller unit test
-        return ResponseHandler.responseBuilder("Requested Lobby details are given here", HttpStatus.OK, lobbyService.getLobby(id_lobby));    
-
+    {   
+         return ResponseHandler.responseBuilder("Requested Lobby details are given here", HttpStatus.OK, lobbyService.getLobby(id_lobby));    
     }
 
     @GetMapping()
