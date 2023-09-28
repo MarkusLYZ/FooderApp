@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.example.Fooder.Exception.LobbyException.LobbyNotFoundException;
 import com.example.Fooder.Models.Lobby;
 import com.example.Fooder.Repositories.LobbyRepository;
 import com.example.Fooder.Service.LobbyService;
